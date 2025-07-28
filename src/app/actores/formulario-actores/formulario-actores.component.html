@@ -1,7 +1,7 @@
 
 <form (submit)="guardarCambios()" [formGroup]="form">
     <mat-form-field appearance="outline">
-        <mat-label>Nombre</mat-label>
+        <mat-label>Nombre completo</mat-label>
         <input matInput [formControl]="form.controls.nombre"/>
         <mat-error>{{ObtenerErrorCampoNombre()}}</mat-error>
     </mat-form-field>
