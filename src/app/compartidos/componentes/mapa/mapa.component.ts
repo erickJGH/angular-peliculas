@@ -14,9 +14,9 @@ export class MapaComponent {
     icon: icon({
       iconSize:[25,41],
       iconAnchor: [13,41],
-      iconUrl: 'assets/market-icon.png',
-      iconRetinaUrl: 'assets/market-icon-2x.png',
-      shadowUrl: 'assets/market-shadow.png'
+      iconUrl: 'assets/marker-icon.png',
+      iconRetinaUrl: 'assets/marker-icon-2x.png',
+      shadowUrl: 'assets/marker-shadow.png'
     })
   }
 
