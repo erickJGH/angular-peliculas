@@ -9,7 +9,7 @@
     </mat-form-field>
     <h4>Seleccione la ubicacion del cine </h4>
 
-    <app-mapa></app-mapa>
+    <app-mapa (coordernadaSeleccionada)="coordernadaSeleccionada($event)" [coordenadasIniciales]="coordenadasIniciales"></app-mapa>
 
     <div class="contenedor-botones">
         <button type="submit" mat-flat-button [disabled]="form.invalid">Guardar cambios</button>

@@ -14,7 +14,9 @@ export class EditarCineComponent {
 
   cine: CineDTO = {
     id: 1, 
-    nombre: 'Acropolis'
+    nombre: 'caribean cinema Palmares',
+    latitud:19.28737215545671,
+    longitud: -70.26965702464986 
   }
 
   guardarCambios(cine: CineCreacionDTO){

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { icon, latLng, LeafletMouseEvent, marker, Marker, MarkerOptions, tileLayer } from 'leaflet';
 import {LeafletModule} from '@bluehalo/ngx-leaflet'
+import { Coordenada } from './Coordenada';
 
 @Component({
   selector: 'app-mapa',
@@ -8,7 +9,23 @@ import {LeafletModule} from '@bluehalo/ngx-leaflet'
   templateUrl: './mapa.component.html',
   styleUrl: './mapa.component.css'
 })
-export class MapaComponent {
+export class MapaComponent implements OnInit {
+  ngOnInit(): void {
+
+    this.capas = this.coordenadasIniciales.map( valor => {
+      const marcador = marker([valor.latitud, valor.longitud], this.markerOptions);
+    
+    return marcador;
+    });
+    
+  }
+
+  @Input()
+  coordenadasIniciales: Coordenada[] = [];
+
+
+  @Output()
+  coordernadaSeleccionada = new EventEmitter<Coordenada>();
 
   markerOptions: MarkerOptions = {
     icon: icon({
@@ -21,15 +38,7 @@ export class MapaComponent {
   }
 
 
-  // markerOptions: MarkerOptions = {
-  //   icon: icon({
-  //     iconSize:[25,41],
-  //     iconAnchor: [13,41],
-  //     iconUrl: 'assets/market-icon.png',
-  //     iconRetinaUrl: 'assets/market-icon-2x.png',
-  //     shadowUrl: 'assets/market-shadow.png'
-  //   })
-  // }
+  
 
 options = {
   layers: [
@@ -50,6 +59,8 @@ manejarClick(event: LeafletMouseEvent){
 
   this.capas = [];
   this.capas.push(marker([latitud,longitud],this.markerOptions));
+  this.coordernadaSeleccionada.emit({latitud,longitud});
+  
 }
 
 }
