@@ -12,6 +12,7 @@ import { EditarPeliculaComponent } from './peliculas/editar-pelicula/editar-peli
 import { EditarActorComponent } from './actores/editar-actor/editar-actor.component';
 import { EditarCineComponent } from './cines/editar-cine/editar-cine.component';
 import { Component } from '@angular/core';
+import { FiltroPeliculasComponent } from './peliculas/filtro-peliculas/filtro-peliculas.component';
 
 export const routes: Routes = [
     {path: '', component: LandingPageComponent},
@@ -26,6 +27,7 @@ export const routes: Routes = [
     {path: 'cines', component: IndiceCinesComponent},
     {path:'cines/crear', component: CrearCineComponent},
     {path:'cines/editar/:id', component: EditarCineComponent},
+    {path:'peliculas/filtrar', component: FiltroPeliculasComponent},
     // {path: '**', component: CrearCineComponent} // con este se puede redireccionar si pones una ruta incorrecta a un componente 
     {path: '**', redirectTo: ''}
 ];
