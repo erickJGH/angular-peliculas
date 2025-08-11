@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 import { InputImgComponent } from '../../compartidos/componentes/input-img/input-img.component';
 import { peliculaCreacionDTO, peliculaDTO } from '../peliculas';
+import moment from 'moment';
 
 @Component({
   selector: 'app-formulario-peliculas',
@@ -14,7 +15,12 @@ import { peliculaCreacionDTO, peliculaDTO } from '../peliculas';
   templateUrl: './formulario-peliculas.component.html',
   styleUrl: './formulario-peliculas.component.css'
 })
-export class FormularioPeliculasComponent {
+export class FormularioPeliculasComponent implements OnInit {
+  ngOnInit(): void {
+
+    if(this.modelo !== undefined)
+    this.form.patchValue(this.modelo);
+  }
 
 
   @Input()
@@ -34,4 +40,39 @@ export class FormularioPeliculasComponent {
   archivoSeleccionado(file: File){
     this.form.controls.poster.setValue(file);
   }
+
+  guardarCambios(){
+    if(!this.form.valid){
+      return;
+    }
+    const pelicula = this.form.value as peliculaCreacionDTO;
+
+    pelicula.fechaLanzamiento = moment(pelicula.fechaLanzamiento).toDate();
+
+    this.posteoFormulario.emit(pelicula);
+    
+  }
+
+  obtenerErrorCampoTitulo(): string {
+    let campo = this.form.controls.titulo;
+
+
+    if(campo.hasError('required')){
+      return 'El campo nombre es requerido';
+    }
+
+    return '';
+  }
+
+  obtenerErrorCampoFechaLanzamiento(): string {
+    let campo = this.form.controls.fechaLanzamiento;
+
+
+    if(campo.hasError('required')){
+      return 'El campo fecha lanzamiento es requerido';
+    }
+
+    return '';
+  }
+
 }
