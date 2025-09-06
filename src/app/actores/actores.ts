@@ -12,3 +12,10 @@ export interface ActorDTO{
     foto?: string;
     
 }
+
+export interface actorAutocompleteDTO{
+    id: number;
+    nombre: string;
+    personaje: string;
+    foto: string;
+}

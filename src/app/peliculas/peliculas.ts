@@ -1,3 +1,5 @@
+import { actorAutocompleteDTO } from "../actores/actores";
+
 export interface peliculaDTO{
     id: number;
     titulo: string;
@@ -11,4 +13,7 @@ export interface peliculaCreacionDTO{
     fechaLanzamiento: Date;
     trailer: string;
     poster?: File;
+    geneorsIds?: number[],
+    cinesIds?: number[],
+    actores?: actorAutocompleteDTO[];
 }
