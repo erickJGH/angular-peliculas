@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { GenerosService } from '../generos.service';
 
+
 @Component({
   selector: 'app-indice-generos',
   imports: [RouterLink,MatButtonModule],
@@ -12,6 +13,7 @@ import { GenerosService } from '../generos.service';
 export class IndiceGenerosComponent {
 
   generosService= inject(GenerosService)
+  
 
   constructor(){
     this.generosService.obtenerTodos().subscribe( generos =>{
